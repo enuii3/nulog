@@ -1,16 +1,13 @@
 require:
-  'rubocop-rails'
-  
+  - 'rubocop-rails'
+
 AllCops:
-  # Rubyのバージョンを指定
-  TargetRubyVersion: 2.4.1
-  # 除外するファイル
   Exclude:
-    - vendor/bundle/**/*
-    - bin/*
-    - db/**/*
-    - config/**/*
-    - Gemfile
+    - 'vendor/bundle/**/*'
+    - 'bin/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'Gemfile'
 
 # Missing magic comment # frozen_string_literal: true. を無視
 Style/FrozenStringLiteralComment:
