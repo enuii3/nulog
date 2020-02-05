@@ -10,6 +10,7 @@ AllCops:
     - db/**/*
     - config/**/*
     - Gemfile
+    - node_modules/**/*
 
 # Missing magic comment # frozen_string_literal: true. を無視
 Style/FrozenStringLiteralComment:
