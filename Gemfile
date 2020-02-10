@@ -20,6 +20,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'pry'
+  gem 'pry-doc' 
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -29,10 +33,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'pry-rails'
-  gem 'pry-byebug'
 end
 
 group :test do
