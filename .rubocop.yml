@@ -31,5 +31,3 @@ Style/ClassAndModuleChildren:
 # 英語以外のコメントアウトの許容
 Style/AsciiComments:
   Enabled: false
-
-# TODO: rspecを導入した事による、三種の警告の対応
