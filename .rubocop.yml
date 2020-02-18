@@ -27,3 +27,7 @@ Metrics/LineLength:
 # Use nested module/class definitions instead of compact style. を無視
 Style/ClassAndModuleChildren:
   Enabled: false
+
+# 英語以外のコメントアウトの許容
+Style/AsciiComments:
+  Enabled: false
