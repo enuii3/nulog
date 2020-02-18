@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :comment do
     body { Faker::Lorem.paragraph_by_chars }
     association :article
-    # comment facotory is at a late
+    # TODO: "現状作成できないのでモデル側を含め、後日対応"
   end
 end
