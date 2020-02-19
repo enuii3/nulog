@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'rails-i18n', '~> 6.0.0'
+gem 'devise'
 
 # gem 'image_processing', '~> 1.2'
 
