@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  devise :database_authenticatable
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorite, as: :favoriteable, dependent: :destroy
