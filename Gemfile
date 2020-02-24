@@ -7,7 +7,7 @@ gem 'rails', '~> 6.0.0'
 gem 'mysql2', '>= 0.4.4'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5'
-gem 'webpacker', '~> 4.0'
+# gem 'webpacker', '~> 4.0' # NOTE: webpackが必要となったタイミングで有効化する
 gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'

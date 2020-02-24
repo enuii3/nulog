@@ -5,8 +5,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
+    <%# webpackが必要となったタイミングで有効化する %>
+    <%# stylesheet_link_tag 'application', media: 'all' %>
+    <%# javascript_pack_tag 'application' %>
+
+    <% if Rails.env.production? %>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+    <% else %>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+    <% end %>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
