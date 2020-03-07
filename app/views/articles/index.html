@@ -1,0 +1,18 @@
+<div id="app">{{ message }}</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: function(){
+      return { message: '' }
+    },
+    mounted: async function() {
+      try {
+        const res = await axios.get('/api/v1/articles')
+        this.message = res.data.message
+      } catch (error) {
+
+      }
+    },
+  })
+</script>
