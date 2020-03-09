@@ -2,6 +2,6 @@ class Api::V1::ArticlesController < ApplicationController
   def index
     @articles = Article.all
 
-    render json: @articles.map(&:title)
+    render json: @articles
   end
 end
