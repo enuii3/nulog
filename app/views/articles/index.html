@@ -1,6 +1,9 @@
 <div id="app">
   <ul>
-    <li v-for='art in articles'>{{ art }}</li>
+    <li v-for='art in articles' :key='art.id'>
+      {{ art.id }}
+      {{ art.title }}
+    </li>
   </ul>
 </div>
 
@@ -8,12 +11,15 @@
   new Vue({
     el: '#app',
     data: function(){
-      return { articles: '' }
+      return {
+        articles: []
+      }
     },
     mounted: async function() {
       try {
         const res = await axios.get('/api/v1/articles')
         this.articles = res.data
+        console.log(this.articles)
       } catch (error) {
 
       }
