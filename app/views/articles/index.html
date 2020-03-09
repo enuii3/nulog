@@ -1,0 +1,26 @@
+<div id="app">
+  <ul>
+    <li v-for='article in articles' :key='article.id'>
+       {{ article.title }}
+    </li>
+  </ul>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: function(){
+      return {
+        articles: []
+      }
+    },
+    mounted: async function() {
+      try {
+        const res = await axios.get('/api/v1/articles')
+        this.articles = res.data
+      } catch (error) {
+
+      }
+    },
+  })
+</script>
