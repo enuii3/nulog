@@ -1,1 +1,6 @@
-<%= @articles.to_json.html_safe %>
+<%
+  array = @articles.map do |article|
+    { id: article.id, title: article.title }
+  end
+%>
+<%= array.to_json.html_safe %>
