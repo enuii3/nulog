@@ -1,9 +1,24 @@
 <div id="app">
-  <ul>
-    <li v-for='article in articles' :key='article.id'>
-       {{ article.title }}
-    </li>
-  </ul>
+  <v-container fluid>
+    <v-layout> 
+      <v-row>
+        <v-col cols="12">
+          <ul>
+            <li v-for='article in articles' :key='article.id'>
+              <v-card class="mx-auto" max-width="900" outlined tile>
+                <v-list-item three-line>
+                  <v-list-item-content>
+                    <h3>タイトル : {{ article.title }}</h3>
+                    <p>投稿者 : {{ article.user_name }}</p>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-card>
+            </li>
+          </ul>
+        </v-col>
+      </v-row>
+    </v-layout>
+  </v-container>
 </div>
 
 <script>
