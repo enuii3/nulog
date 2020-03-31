@@ -1,6 +1,8 @@
 <%
   array = @articles.map do |article|
-    { id: article.id, title: article.title }
+    user = User.find_by(id: article.user_id)
+    { id: article.id, title: article.title, user_name: user.name }
   end
 %>
 <%= array.to_json.html_safe %>
+ 
