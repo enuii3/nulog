@@ -1,0 +1,48 @@
+<div id="app">
+  <ul>
+    <lip v-for='article in articles' :key='article.id'>
+      <div class='card'>
+        <p>タイトル: {{ article.title }}</p>
+        <p>投稿日: {{ article.updated_at }}</p>
+        <p>投稿者: {{ article.user.name }}</p>
+        <p>記事内容: {{ article.body }}</p>
+      </div>
+      <div class="right-button">
+        <%# TODO: 記事詳細画面は後日実装  %>
+        <a :href="'/articles/' + article.id"><input type="submit" value="記事詳細"></a>
+      </div>
+    </lip>
+  </ul>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: function(){
+      return {
+        articles: []
+      }
+    },
+    mounted: async function() {
+      try {
+        const res = await axios.get('/api/v1/articles')
+        this.articles = res.data
+      } catch (error) {
+
+      }
+    },
+  })
+</script>
+
+<style>
+  .card{
+    color: white;
+    background-color: gray;
+    margin: 40px;
+    padding: 50px;
+  }
+  .right-button{
+    text-align: right;
+    padding-right: 40px;
+  }
+</style>
