@@ -2,10 +2,9 @@
   <ul>
     <lip v-for='article in articles' :key='article.id'>
       <div class='card'>
-        <p>タイトル: {{ article.title }}</p>
-        <p>投稿日: {{ article.updated_at }}</p>
-        <p>投稿者: {{ article.user.name }}</p>
-        <p>記事内容: {{ article.body }}</p>
+        <h2>{{ article.title }}</h2>
+        <pre class="font-size">{{ article.updated_at }}  {{ article.user.name }}</pre>
+        <p>{{ article.body }}</p>
       </div>
       <div class="right-button">
         <%# TODO: 記事詳細画面は後日実装  %>
@@ -38,15 +37,15 @@
   .card{
     color: white;
     background-color: gray;
-    margin: 40px;
+    margin: 10px;
     padding: 50px;
   }
   .right-button{
     text-align: right;
-    padding-right: 140px;
   }
   .btn{
     display: inline-block;
+    margin: 0px 10px 30px 0px;
     padding: 10px 100px;
     background-color: green;
     color: white;
