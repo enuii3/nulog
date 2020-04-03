@@ -1,16 +1,16 @@
 <div id="app">
-  <ul>
-    <lip v-for='article in articles' :key='article.id'>
-      <div class='card'>
+  <ul class="list-style">
+    <li v-for='article in articles' :key='article.id'>
+      <div class="card">
         <h2>{{ article.title }}</h2>
-        <pre class="font-size">{{ article.updated_at }}  {{ article.user.name }}</pre>
+        <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
         <p>{{ article.body }}</p>
       </div>
       <div class="right-button">
         <%# TODO: 記事詳細画面は後日実装  %>
         <a :href="'/articles/' + article.id" class="btn">記事詳細</a>
       </div>
-    </lip>
+    </li>
   </ul>
 </div>
 
@@ -34,18 +34,22 @@
 </script>
 
 <style>
+  .list-style{
+    list-style: none;
+  }
   .card{
     color: white;
     background-color: gray;
-    margin: 10px;
+    margin: 10px 40px 10px 40px;
     padding: 50px;
+    list-style: none;
   }
   .right-button{
     text-align: right;
   }
   .btn{
     display: inline-block;
-    margin: 0px 10px 30px 0px;
+    margin: 0px 40px 30px 0px;
     padding: 10px 100px;
     background-color: green;
     color: white;
