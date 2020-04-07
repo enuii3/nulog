@@ -1,0 +1,87 @@
+<div id="article-new">
+  <form @submit.prevent="createArticle" class="input-center"><br>
+    <div v-if="errors.length != 0">
+      <ul v-for="e in errors" :key="e">
+        <li><font color="red">{{ e }}</font></li>
+      </ul>
+    </div>
+    <label class="article-label">タイトル</label>
+    <div class="center">
+      <input v-model='article.title' type="text" class="input-text">
+    </div><br>
+    <label class="article-label">本文</label>
+    <div class="center">
+      <textarea v-model='article.body' class="input-text" rows="20"></textarea>
+    </div><br>
+    <div class="button-area">
+      <button class='left btn'>キャンセル</button>
+      <button type="submit" class="right btn">投稿</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  new Vue({
+    el: '#article-new',
+    data: function(){
+      return {
+        article: {
+          user_id: <%= User.first.id %>,
+          title: "",
+          body: "",
+        },
+        errors: [],
+      }
+    },
+    methods: {
+      createArticle: async function() {
+        try {
+          const res = await axios.post('/api/v1/articles', this.article)
+          location.href = `/articles/${res.data.id}`
+        } catch (error) {
+          this.errors = error.response.data
+        }
+      }
+    }
+  })
+</script>
+
+<style scoped>
+  .list-style{
+    list-style: none;
+  }
+  .card{
+    color: white;
+    background-color: gray;
+    margin: 10px 40px;
+    padding: 50px;
+    list-style: none;
+  }
+  .right{
+    float: right;
+    margin: 0 40px 0 0; 
+  }
+  .left{
+    float: left;
+    margin: 0 0 0 40px;
+  }
+  .btn{
+    width: 150px;
+    height: 50px;
+    background-color: green;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .center{
+    text-align: center;
+  }
+  .input-text{
+    width: 93%; 
+  }
+  .article-label{
+    padding-left: 45px;
+    font-size: 1.5em;
+  }
+</style>
