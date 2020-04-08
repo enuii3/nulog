@@ -2,17 +2,13 @@
   <form @submit.prevent="createArticle" class="input-center"><br>
     <div v-if="errors.length != 0">
       <ul v-for="e in errors" :key="e">
-        <li><font color="red">{{ e }}</font></li>
+        <li class="error-field">{{ e }}</li>
       </ul>
     </div>
-    <label class="article-label">タイトル</label>
-    <div class="center">
-      <input v-model='article.title' type="text" class="input-text">
-    </div><br>
-    <label class="article-label">本文</label>
-    <div class="center">
-      <textarea v-model='article.body' class="input-text" rows="20"></textarea>
-    </div><br>
+    <div class="input-field">
+      <input v-model='article.title' type="text" placeholder="記事タイトル">
+      <textarea v-model='article.body' rows="20" placeholder="記事本文"></textarea>
+    </div>
     <div class="button-area">
       <button class='left btn'>キャンセル</button>
       <button type="submit" class="right btn">投稿</button>
@@ -21,6 +17,7 @@
 </div>
 
 <script>
+  // axiosのリクエストにCSRF対策を付与
   const csrf_token = document.getElementsByName('csrf-token')[0].getAttribute('content')
   axios.defaults.headers.common['X-CSRF-Token'] = csrf_token
 
@@ -33,7 +30,7 @@
           title: "",
           body: "",
         },
-        errors: [],
+        errors: "",
       }
     },
     methods: {
@@ -50,23 +47,13 @@
 </script>
 
 <style scoped>
-  .list-style{
-    list-style: none;
-  }
-  .card{
-    color: white;
-    background-color: gray;
-    margin: 10px 40px;
-    padding: 50px;
-    list-style: none;
-  }
   .right{
     float: right;
-    margin: 0 40px 0 0; 
+    margin-right: 40px; 
   }
   .left{
     float: left;
-    margin: 0 0 0 40px;
+    margin-left: 40px;
   }
   .btn{
     width: 150px;
@@ -77,14 +64,14 @@
     text-decoration: none;
     font-size: 15px;
   }
-  .center{
+  .input-field{
     text-align: center;
   }
-  .input-text{
+  input, textarea{
     width: 93%; 
+    margin-bottom: 20px;
   }
-  .article-label{
-    padding-left: 45px;
-    font-size: 1.5em;
+  .error-field{
+    color: red;
   }
 </style>
