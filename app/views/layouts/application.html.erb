@@ -15,6 +15,10 @@
       <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
     <% end %>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const csrf_token = document.getElementsByName('csrf-token')[0].getAttribute('content')
+      axios.defaults.headers.common['X-CSRF-Token'] = csrf_token
+    </script>
   </head>
 
   <body>
