@@ -1,8 +1,8 @@
 <div id="article-new">
-  <form @submit.prevent="createArticle" class="input-center"><br>
-    <div v-if="errors.length != 0">
-      <ul v-for="e in errors" :key="e">
-        <li class="error-field">{{ e }}</li>
+  <form @submit.prevent="createArticle"><br>
+    <div v-if="errors">
+      <ul v-for="error in errors" :key="error">
+        <li class="error-field">{{ error }}</li>
       </ul>
     </div>
     <div class="input-field">
@@ -17,10 +17,6 @@
 </div>
 
 <script>
-  // axiosのリクエストにCSRF対策を付与
-  const csrf_token = document.getElementsByName('csrf-token')[0].getAttribute('content')
-  axios.defaults.headers.common['X-CSRF-Token'] = csrf_token
-
   new Vue({
     el: '#article-new',
     data: function(){
@@ -30,7 +26,7 @@
           title: "",
           body: "",
         },
-        errors: "",
+        errors: [],
       }
     },
     methods: {
@@ -45,33 +41,3 @@
     }
   })
 </script>
-
-<style scoped>
-  .right{
-    float: right;
-    margin-right: 40px; 
-  }
-  .left{
-    float: left;
-    margin-left: 40px;
-  }
-  .btn{
-    width: 150px;
-    height: 50px;
-    background-color: green;
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 15px;
-  }
-  .input-field{
-    text-align: center;
-  }
-  input, textarea{
-    width: 93%; 
-    margin-bottom: 20px;
-  }
-  .error-field{
-    color: red;
-  }
-</style>
