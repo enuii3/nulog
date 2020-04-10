@@ -1,0 +1,41 @@
+<div id="header">
+  <header>
+    <h1 class="logo">nulog</h1>
+    <ul class="nav-list">
+      <li class="nav-list-item">
+        <a href="/articles" class="articles-link">記事一覧</a>
+      </li>
+      <li class="nav-list-item">
+      <%# TODO: 記事投稿画面の構築は後日対応 %>
+        <a href="/articles/new" class="articles-link">記事投稿</a>
+      </li>
+    </ul>
+  </header>
+</div>
+
+<style scoped>
+.logo{
+  letter-spacing: 0.3em;
+  float: left;
+  line-height: 30px;
+  margin-left: 20px;
+}
+header{
+  width: 100%;
+  height: 70px;
+  margin: 0 auto;
+}
+.articles-link{
+  text-decoration: none;
+  color: black;
+  padding: 0 10px;
+}
+.nav-list{
+  line-height: 80px;
+}
+.nav-list-item{
+  list-style: none;
+  display: inline-block;
+  float: right;
+}
+</style>
