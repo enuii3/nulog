@@ -1,6 +1,14 @@
 <%
   array = @articles.map do |article|
-    { id: article.id, title: article.title }
+    #時刻を表示させないために、DataWithZoneクラスからDateクラスに変換
+    article_updated_at = article.updated_at.to_date
+    {
+      id: article.id,
+      title: article.title,
+      body: article.body,
+      user_name: article.user.name,
+      updated_at: l(article_updated_at, format: :long),
+    }
   end
 %>
 <%= array.to_json.html_safe %>
