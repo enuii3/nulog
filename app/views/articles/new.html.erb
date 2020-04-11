@@ -1,0 +1,35 @@
+<div id="article-new">
+  <article-component
+    :title.sync="article.title"
+    :body.sync="article.body"
+    :errors="errors"
+    :new-submit="true"
+    @create-article="createArticle"
+  ></article-component>
+</div>
+
+<script>
+  new Vue({
+    el: '#article-new',
+    data: function(){
+      return {
+        article: {
+          user_id: <%= User.first.id %>,
+          title: "",
+          body: "",
+        },
+        errors: []
+      }
+    },
+    methods: {
+      createArticle: async function() {
+        try {
+          const res = await axios.post('/api/v1/articles',this.article)
+          location.href = `/articles/${res.data.id}`
+        } catch (error) {
+          this.errors = error.response.data
+        }
+      }
+    },
+  })
+</script>

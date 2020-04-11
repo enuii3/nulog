@@ -1,0 +1,43 @@
+<div id="article-edit">
+  <article-component
+    :title.sync="article.title"
+    :body.sync="article.body"
+    :errors="errors"
+    :edit-submit="true"
+    @update-article="updateArticle"
+  ></article-component>
+</div>
+
+<script>
+  new Vue({
+    el: '#article-edit',
+    data: function(){
+      return {
+        article: {
+          user_id: <%= User.first.id %>,
+          title: "",
+          body: "",
+        },
+        errors: [],
+      }
+    },
+    mounted: async function() {
+      try {
+        const res = await axios.get("/api/v1/articles/<%= params[:id] %>/edit") 
+        this.article = res.data
+      } catch (error){
+
+      }
+    },
+    methods: {
+      updateArticle: async function() {
+        try {
+          const res = await axios.patch(`/api/v1/articles/${this.article.id}`, this.article)
+          location.href = `/articles/${res.data.id}`
+        } catch (error) {
+          this.errors = error.response.data
+        }
+      }
+    },
+  })
+</script>
