@@ -19,6 +19,7 @@
       const csrf_token = document.getElementsByName('csrf-token')[0].getAttribute('content')
       axios.defaults.headers.common['X-CSRF-Token'] = csrf_token
     </script>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
