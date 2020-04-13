@@ -1,8 +1,8 @@
 <div id="article-new">
   <form @submit.prevent="createArticle"><br>
     <div v-if="errors">
-      <ul v-for="error in errors" :key="error">
-        <li class="error-field">{{ error }}</li>
+      <ul>
+        <li v-for="error in errors" :key="error" class="error-field">{{ error }}</li>
       </ul>
     </div>
     <div class="input-field">
