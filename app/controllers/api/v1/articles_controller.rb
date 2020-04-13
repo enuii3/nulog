@@ -20,6 +20,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   def params_article
     params.require(:article).permit(:body, :title, :user_id)
+  end
 
   def find_article
     @article = Article.find(params[:id])
