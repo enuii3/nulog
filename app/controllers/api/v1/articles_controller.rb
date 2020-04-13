@@ -19,7 +19,7 @@ class Api::V1::ArticlesController < ApplicationController
   def show; end
 
   def update
-    if @article.update(params_article)
+    if @article.update(title: params[:title], body: params[:body])
       render json: { title: @article.title, body: @article.body }
     else
       render json: @article.errors.full_messages, status: :unprocessable_entity

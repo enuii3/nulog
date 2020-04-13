@@ -2,7 +2,7 @@ Vue.component('article-show-component', {
   props: {
     id: {
       type: Number,
-      require: true,
+      required: true,
     }
   },
   data: function(){
@@ -12,7 +12,7 @@ Vue.component('article-show-component', {
   },
   mounted: async function() {
     try {
-      const res = await axios.get(`/api/v1/articles/${this.id}%>`)
+      const res = await axios.get(`/api/v1/articles/${this.id}`)
       this.article = res.data
     } catch (error) {
 

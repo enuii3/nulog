@@ -2,16 +2,13 @@ Vue.component('article-form-component', {
   props: {
     id: {
       type: Number,
-      require: true,
     },
-    createSubmit: {
+    permissionCreate: {
       type: Boolean,
-      require: true,
       default: false,
     }, 
-    updateSubmit: {
+    permissionUpdate: {
       type: Boolean,
-      require: true,
       default: false,
     }, 
   },
@@ -27,6 +24,7 @@ Vue.component('article-form-component', {
   },
   mounted: async function() {
     try {
+      if(this.id === undefined) return;
       const res = await axios.get(`/api/v1/articles/${this.id}/edit`) 
       this.article = res.data
     } catch (error){
@@ -51,9 +49,9 @@ Vue.component('article-form-component', {
       }
     },
     submitEvent: function() {
-      if (this.createSubmit) {
+      if (this.permissionCreate) {
         this.createArticle()
-      } else if (this.updateSubmit) {
+      } else if (this.permissionUpdate) {
         this.updateArticle()
       } else {
 

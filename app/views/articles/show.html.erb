@@ -1,8 +1,8 @@
 <div id="article-show">
-  <article-show-component v-if="isActive" :id="id"  @change-page="changePage"></article-show-component>
-  <article-form-component v-else
+  <article-show-component v-if="isActiveShow" :id="id"  @change-page="changePage"></article-show-component>
+  <article-form-component v-if="isActiveEdit"
     :id="id"
-    :update-submit="true"
+    :permission-update="true"
     @change-page="changePage"
   ></article-form-component>
 </div>
@@ -13,12 +13,14 @@
     data: function(){
       return {
         id: <%= params[:id] %>,
-        isActive: true,
+        isActiveShow: true,
+        isActiveEdit: false,
       }
     },
     methods: {
       changePage: function() {
-        this.isActive = !this.isActive
+        this.isActiveShow = !this.isActiveShow
+        this.isActiveEdit = !this.isActiveEdit
       },
     }
   })
