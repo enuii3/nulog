@@ -1,0 +1,70 @@
+<div id="article-show">
+  <div class="card">
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
+    <p>{{ article.body }}</p>
+  </div>
+
+  <div class="button-area">
+    <%# TODO: 記事削除機能は後日対応 %>
+    <button class="left btn" @click="alertDestroy">削除</button>
+    <%# TODO: 記事編集機能は後日対応 %>
+    <button class="right btn" @click="alertEdit">編集</button>
+  </div>
+</div>
+
+<script>
+  new Vue({
+    el: '#article-show',
+    data: function(){
+      return {
+        article: {}
+      }
+    },
+    mounted: async function() {
+      try {
+        const res = await axios.get("/api/v1/articles/<%= params[:id] %>")
+        this.article = res.data
+      } catch (error) {
+
+      }
+    },
+    methods: {
+      // 記事削除機能は後日実装
+      alertDestroy: function() {
+        alert('削除ボタンが押下されました')
+      },
+      // 記事編集機能は後日実装
+      alertEdit: function() {
+        alert('編集ボタンが押下されました')
+      }
+    }
+  })
+</script>
+
+<style scoped>
+  .card{
+    color: white;
+    background-color: gray;
+    margin: 10px 40px;
+    padding: 50px;
+    list-style: none;
+  }
+  .right{
+    float: right;
+    margin-right: 40px;
+  }
+  .left{
+    float: left;
+    margin-left: 40px;
+  }
+  .btn{
+    width: 150px;
+    height: 50px;
+    background-color: green;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+  }
+</style>
