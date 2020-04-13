@@ -19,9 +19,15 @@ Vue.component('article-show-component', {
     }
   },
   methods: {
-    // 記事削除機能は後日実装
-    alertDestroy: function() {
-      alert('削除ボタンが押下されました')
+    destroyArticle: async function() {
+      if(confirm('削除して宜しいですか？')) {
+        try {
+          await axios.delete(`/api/v1/articles/${this.id}`)
+          location.href = '/articles/'
+        } catch(error) {
+
+        }
+      }
     },
   },
   template: `
@@ -33,7 +39,7 @@ Vue.component('article-show-component', {
     </div>
     <div class="button-area">
       <!-- 削除昨日は後日実装 -->
-      <button class="left btn" @click="alertDestroy">削除</button>
+      <button class="left btn" @click.prevent="destroyArticle">削除</button>
       <button class="right btn" @click="$emit('change-page')">編集</button>
     </div>
   </div>`
