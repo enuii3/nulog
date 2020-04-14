@@ -1,5 +1,5 @@
 class Api::V1::ArticlesController < ApplicationController
-  before_action :find_article, only: %i[edit show update destroy]
+  before_action :find_article, only: %i[edit show update]
 
   def index
     @articles = Article.all
@@ -19,24 +19,17 @@ class Api::V1::ArticlesController < ApplicationController
   def show; end
 
   def update
-    if @article.update(title: params[:title], body: params[:body])
+    if @article.update(params_article)
       render json: { title: @article.title, body: @article.body }
     else
       render json: @article.errors.full_messages, status: :unprocessable_entity
     end
   end
 
-  def destroy
-    if @article.destroy
-    else
-      render json: @article.errors.full_messages
-    end
-  end
-
   private
 
   def params_article
-    params.require(:article).permit(:body, :title, :user_id)
+    params.require(:article).permit(:id, :body, :title, :user_id)
   end
 
   def find_article
