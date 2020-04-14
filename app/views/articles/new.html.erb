@@ -1,43 +1,7 @@
 <div id="article-new">
-  <form @submit.prevent="createArticle"><br>
-    <div v-if="errors">
-      <ul>
-        <li v-for="error in errors" :key="error" class="error-field">{{ error }}</li>
-      </ul>
-    </div>
-    <div class="input-field">
-      <input v-model='article.title' type="text" placeholder="記事タイトル">
-      <textarea v-model='article.body' rows="20" placeholder="記事本文"></textarea>
-    </div>
-    <div class="button-area">
-      <button class='left btn'>キャンセル</button>
-      <button type="submit" class="right btn">投稿</button>
-    </div>
-  </form>
+  <article-form-component :permission-create="true"></article-form-component>
 </div>
 
 <script>
-  new Vue({
-    el: '#article-new',
-    data: function(){
-      return {
-        article: {
-          user_id: <%= User.first.id %>,
-          title: "",
-          body: "",
-        },
-        errors: [],
-      }
-    },
-    methods: {
-      createArticle: async function() {
-        try {
-          const res = await axios.post('/api/v1/articles', this.article)
-          location.href = `/articles/${res.data.id}`
-        } catch (error) {
-          this.errors = error.response.data
-        }
-      }
-    }
-  })
+  new Vue({}).$mount('#article-new')
 </script>
