@@ -1,5 +1,5 @@
 class Api::V1::ArticlesController < ApplicationController
-  before_action :find_article, only: %i[edit show update]
+  before_action :find_article, only: %i[edit show update destroy]
 
   def index
     @articles = Article.all
@@ -23,6 +23,14 @@ class Api::V1::ArticlesController < ApplicationController
       render json: { title: @article.title, body: @article.body }
     else
       render json: @article.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @article.destroy
+      head :ok
+    else
+      render json: @article.errors.full_messages
     end
   end
 
