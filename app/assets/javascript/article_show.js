@@ -38,8 +38,7 @@ Vue.component('article-show-component', {
       <p>{{ article.body }}</p>
     </div>
     <div class="button-area">
-      <!-- 削除昨日は後日実装 -->
-      <button class="left btn" @click.prevent="destroyArticle">削除</button>
+      <button class="left btn" @click="destroyArticle">削除</button>
       <button class="right btn" @click="$emit('change-page')">編集</button>
     </div>
   </div>`

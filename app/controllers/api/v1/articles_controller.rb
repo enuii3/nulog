@@ -28,6 +28,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   def destroy
     if @article.destroy
+      head :ok
     else
       render json: @article.errors.full_messages
     end
