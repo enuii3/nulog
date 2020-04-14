@@ -28,7 +28,7 @@ Vue.component('article-form-component', {
       const res = await axios.get(`/api/v1/articles/${this.id}/edit`) 
       this.article = res.data
     } catch (error){
-
+      this.errors = error.response.data
     }
   },
   methods: {
@@ -61,11 +61,7 @@ Vue.component('article-form-component', {
   template: `
     <div>
       <form @submit.prevent="submitEvent"><br>
-        <div v-if="errors">
-          <ul v-for="error in errors" :key="error">
-            <li class="error-field">{{ error }}</></li>
-          </ul>
-        </div>
+        <error-component :errors="errors"></error-component>
         <div class="input-field">
           <input type="text"
             v-model="article.title"

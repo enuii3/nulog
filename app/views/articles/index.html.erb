@@ -1,4 +1,5 @@
 <div id="app">
+  <error-component :errors="errors"></error-component>
   <ul class="none-list-style">
     <li v-for='article in articles' :key='article.id'>
       <div class="card">
@@ -16,7 +17,8 @@
     el: '#app',
     data: function(){
       return {
-        articles: []
+        articles: [],
+        errors: [],
       }
     },
     mounted: async function() {
@@ -24,7 +26,7 @@
         const res = await axios.get('/api/v1/articles')
         this.articles = res.data
       } catch (error) {
-
+        this.errors = error.response.data
       }
     },
     methods: {
