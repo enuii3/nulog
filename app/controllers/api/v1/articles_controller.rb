@@ -19,7 +19,7 @@ class Api::V1::ArticlesController < ApplicationController
   def show; end
 
   def update
-    if @article.update(title: params[:title], body: params[:body])
+    if @article.update(params_article)
       render json: { title: @article.title, body: @article.body }
     else
       render json: @article.errors.full_messages, status: :unprocessable_entity
@@ -36,7 +36,7 @@ class Api::V1::ArticlesController < ApplicationController
   private
 
   def params_article
-    params.require(:article).permit(:body, :title, :user_id)
+    params.require(:article).permit(:id, :body, :title, :user_id)
   end
 
   def find_article

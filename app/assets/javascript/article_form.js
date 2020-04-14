@@ -24,7 +24,7 @@ Vue.component('article-form-component', {
   },
   mounted: async function() {
     try {
-      if(this.id === undefined) return;
+      if(!this.id) return
       const res = await axios.get(`/api/v1/articles/${this.id}/edit`) 
       this.article = res.data
     } catch (error){
