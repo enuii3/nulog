@@ -30,7 +30,7 @@ class Api::V1::ArticlesController < ApplicationController
     if @article.destroy
       head :ok
     else
-      render json: @article.errors.full_messages
+      render json: @article.errors.full_messages, status: :conflict
     end
   end
 

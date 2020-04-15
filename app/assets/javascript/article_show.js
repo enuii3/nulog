@@ -8,6 +8,7 @@ Vue.component('article-show-component', {
   data: function(){
     return {
       article: {},
+      errors: [],
     }
   },
   mounted: async function() {
@@ -15,7 +16,7 @@ Vue.component('article-show-component', {
       const res = await axios.get(`/api/v1/articles/${this.id}`)
       this.article = res.data
     } catch (error) {
-
+      this.errors = error.response.data
     }
   },
   methods: {
@@ -25,13 +26,14 @@ Vue.component('article-show-component', {
           await axios.delete(`/api/v1/articles/${this.id}`)
           location.href = '/articles/'
         } catch(error) {
-
+          this.errors = error.response.data
         }
       }
     },
   },
   template: `
   <div>
+    <error-component :errors="errors"></error-component>
     <div class="card">
       <h2>{{ article.title }}</h2>
       <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
