@@ -1,5 +1,7 @@
 Vue.component('error-component', {
-  props: ['errors'],
+  props: { 
+    errors: [Array, Object],
+  },
   template: `
     <div>
       <div v-if="errors">
