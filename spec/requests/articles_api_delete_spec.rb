@@ -14,8 +14,8 @@ RSpec.describe 'ArticlesApiDelete', type: :request do
     it 'destroy not found article' do
       delete "/api/v1/articles/#{Article.count + 1}"
       json = JSON.parse(response.body)
-      
-      expect(json).to include("message" => "エラーが発生しました。システム管理者にお問い合わせください。")
+
+      expect(json).to include('message' => 'エラーが発生しました。システム管理者にお問い合わせください。')
       expect(response.status).to eq(500)
     end
   end

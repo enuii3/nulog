@@ -25,14 +25,14 @@ RSpec.describe 'ArticlesApiPatch', type: :request do
   describe 'AnomaryPatchApi' do
     it 'no title' do
       patch "/api/v1/articles/#{article.id}", params: { article: { title: '' } }
-    
+
       expect(json).to include('記事タイトルを入力してください')
       expect(response.status).to eq(422)
     end
 
     it 'no body' do
       patch "/api/v1/articles/#{article.id}", params: { article: { body: '' } }
-    
+
       expect(json).to include('記事本文を入力してください')
       expect(response.status).to eq(422)
     end

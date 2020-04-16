@@ -30,7 +30,7 @@ RSpec.describe 'ArticlesApiGet', type: :request do
     it 'show not find article' do
       get "/api/v1/articles/#{Article.count + 1}"
 
-      expect(json).to include("message" => "エラーが発生しました。システム管理者にお問い合わせください。")
+      expect(json).to include('message' => 'エラーが発生しました。システム管理者にお問い合わせください。')
       expect(response.status).to eq(500)
     end
   end
