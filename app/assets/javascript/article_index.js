@@ -18,7 +18,7 @@ Vue.component('article-index-component', {
       <error-component :errors="errors"></error-component>
       <ul class="none-list-style">
         <li v-for='article in articles' :key='article.id'>
-          <article-show-component :prop-article="article"></article-show-component>
+          <article-show-component :post="article"></article-show-component>
         </li>
       </ul>
     </div>

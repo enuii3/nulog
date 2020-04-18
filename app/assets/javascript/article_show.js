@@ -3,7 +3,7 @@ Vue.component('article-show-component', {
     id: {
       type: Number,
     },
-    propArticle: {
+    post: {
       type: Object,
     },
   },
@@ -15,7 +15,8 @@ Vue.component('article-show-component', {
   },
   mounted: async function() {
     try {
-      this.article.id ? '' : this.article.id = this.id
+      if(this.post) return this.switchArticle
+      this.switchIdForShowPath
       const res = await axios.get(`/api/v1/articles/${this.article.id}`)
       this.article = res.data
     } catch (error) {
@@ -24,8 +25,11 @@ Vue.component('article-show-component', {
   },
   computed: {
     switchArticle: function(){
-      this.propArticle ? this.article = this.propArticle : ''
-    }
+      this.article = this.post
+    },
+    switchIdForShowPath: function() {
+      if(!this.article.id) this.article.id = this.id
+    },
   },
   methods: {
     destroyArticle: async function() {
@@ -44,15 +48,15 @@ Vue.component('article-show-component', {
   },
   template: `
     <div>
-      <error-component :errors="errors" v-if="!propArticle"></error-component>
-        <div class="card" v-bind="switchArticle">
-          <h2>{{ article.title }}</h2>
-          <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
-          <p>{{ article.body }}</p>
-        </div>
+      <error-component :errors="errors" v-if="!post"></error-component>
+      <div class="card">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
+        <p>{{ article.body }}</p>
+      </div>
 
-      <div v-if="propArticle">
-        <button class="right btn" @click="linkToShow(propArticle.id)">記事詳細</button><br><br><br>
+      <div v-if="post">
+        <button class="right btn" @click="linkToShow(post.id)">記事詳細</button><br><br><br>
       </div>
       <div v-else>
         <button class="left btn" @click="destroyArticle">削除</button>
