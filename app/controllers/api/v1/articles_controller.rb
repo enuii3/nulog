@@ -10,7 +10,8 @@ class Api::V1::ArticlesController < ApplicationController
     if article.save
       render json: article
     else
-      render json: article.errors.full_messages, status: :unprocessable_entity
+      render json: article.errors.full_messages, status:
+      article.user_id ? :unprocessable_entity : :bad_request
     end
   end
 
@@ -22,7 +23,8 @@ class Api::V1::ArticlesController < ApplicationController
     if @article.update(params_article)
       render json: { title: @article.title, body: @article.body }
     else
-      render json: @article.errors.full_messages, status: :unprocessable_entity
+      render json: article.errors.full_messages, status:
+      @article.user_id ? :unprocessable_entity : :bad_request
     end
   end
 
