@@ -8,7 +8,6 @@ RSpec.describe 'ArticlesApiPatch', type: :request do
     it 'update article title' do
       patch "/api/v1/articles/#{article.id}", params: { article: { title: 'update-title' } }
 
-      expect(json.keys).to include('title', 'body')
       expect(json['title']).to eq('update-title')
       expect(json['body']).to eq(article.body)
       expect(response.status).to eq(200)
@@ -17,7 +16,6 @@ RSpec.describe 'ArticlesApiPatch', type: :request do
     it 'update article body' do
       patch "/api/v1/articles/#{article.id}", params: { article: { body: 'update-body' } }
 
-      expect(json.keys).to include('title', 'body')
       expect(json['title']).to eq(article.title)
       expect(json['body']).to eq('update-body')
       expect(response.status).to eq(200)

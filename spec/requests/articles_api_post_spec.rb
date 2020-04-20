@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'ArticlesApiPost', type: :request do
-  let(:user) { FactoryBot.create(:user) }
   let(:json) { JSON.parse(response.body) }
+  let(:user) { FactoryBot.create(:user) }
 
   describe 'ApiPost' do
     it 'create article' do

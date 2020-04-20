@@ -6,19 +6,12 @@ RSpec.describe 'ArticlesApiGet', type: :request do
 
   describe 'GetApi' do
     it 'index articles' do
-      articles.map do |art|
-        get api_v1_article_path(art.id)
-        json = JSON.parse(response.body)
-        art_updated_at = I18n.l(art.updated_at.to_date, format: :long)
+      articles
+      get api_v1_articles_path
+      jsons = JSON.parse(response.body)
 
-        expect(json.keys).to include('id', 'title', 'body', 'updated_at', 'user_name')
-        expect(json['id']).to eq(art.id)
-        expect(json['title']).to eq(art.title)
-        expect(json['body']).to eq(art.body)
-        expect(json['updated_at']).to eq(art_updated_at)
-        expect(json['user_name']).to eq(art.user.name)
-        expect(response.status).to eq(200)
-      end
+      expect(jsons.length).to eq(3)
+      expect(response.status).to eq(200)
     end
 
     it 'show article' do
@@ -26,7 +19,6 @@ RSpec.describe 'ArticlesApiGet', type: :request do
       json = JSON.parse(response.body)
       article_updated_at = I18n.l(article.updated_at.to_date, format: :long)
 
-      expect(json.keys).to include('id', 'title', 'body', 'updated_at', 'user_name')
       expect(json['id']).to eq(article.id)
       expect(json['title']).to eq(article.title)
       expect(json['body']).to eq(article.body)
