@@ -10,7 +10,11 @@ RSpec.describe 'ArticlesApiGet', type: :request do
       get api_v1_articles_path
       jsons = JSON.parse(response.body)
 
+      jsons.each do |json|
+        expect(json.keys).to include('id', 'title', 'body', 'updated_at', 'user_name')
+      end
       expect(jsons.length).to eq(3)
+      expect(jsons.count).to eq(articles.count)
       expect(response.status).to eq(200)
     end
 
