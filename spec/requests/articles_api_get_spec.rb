@@ -14,7 +14,6 @@ RSpec.describe 'ArticlesApiGet', type: :request do
         expect(json.keys).to include('id', 'title', 'body', 'updated_at', 'user_name')
       end
       expect(jsons.length).to eq(3)
-      expect(jsons.count).to eq(articles.count)
       expect(response.status).to eq(200)
     end
 
