@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   rescue_from Exception, with: :render_status_500
   rescue_from ActiveRecord::RecordNotFound, with: :render_status_404
-  rescue_from ActionController::InvalidCrossOriginRequest, with: :render_400
+  rescue_from ActionController::ParameterMissing, with: :render_status_400
 
   private
 
