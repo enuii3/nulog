@@ -31,3 +31,8 @@ Style/ClassAndModuleChildren:
 # 英語以外のコメントアウトの許容
 Style/AsciiComments:
   Enabled: false
+
+#一つのブロックあたりの25行制限を解除
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/requests/**'
