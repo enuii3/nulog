@@ -27,11 +27,8 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def destroy
-    if @article.destroy
-      head :ok
-    else
-      render json: @article.errors.full_messages, status: :conflict
-    end
+    @article.destroy
+    head :ok
   end
 
   private
