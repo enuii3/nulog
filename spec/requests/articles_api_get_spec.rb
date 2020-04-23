@@ -7,7 +7,7 @@ RSpec.describe 'ArticlesApiGet', type: :request do
   describe 'GetApi' do
     it 'index articles' do
       articles
-      get api_v1_articles_path
+      get '/api/v1/articles/'
       jsons = JSON.parse(response.body)
 
       jsons.each do |json|
@@ -18,7 +18,7 @@ RSpec.describe 'ArticlesApiGet', type: :request do
     end
 
     it 'show article' do
-      get api_v1_article_path(article.id)
+      get "/api/v1/articles/#{article.id}"
       json = JSON.parse(response.body)
       article_updated_at = I18n.l(article.updated_at.to_date, format: :long)
 
@@ -28,6 +28,35 @@ RSpec.describe 'ArticlesApiGet', type: :request do
       expect(json['updated_at']).to eq(article_updated_at)
       expect(json['user_name']).to eq(article.user.name)
       expect(response.status).to eq(200)
+    end
+  end
+
+  describe 'ErrorGetApi' do
+    it 'not found artilce expected error response' do
+      get '/api/v1/articles/undefined'
+      json = JSON.parse(response.body)
+
+      expect(json).to include('message' => 'お探しものが見つかりません')
+      expect(response.status).to eq(404)
+    end
+
+    it 'raise in index expected error response' do
+      articles
+      allow(Article).to receive(:all).and_raise
+      get '/api/v1/articles/'
+      json = JSON.parse(response.body)
+
+      expect(json).to include('message' => 'エラーが発生しました。システム管理者にお問い合わせください。')
+      expect(response.status).to eq(500)
+    end
+
+    it 'raise in show expected error response' do
+      allow(Article).to receive(:find).and_raise
+      get "/api/v1/articles/#{article.id}"
+      json = JSON.parse(response.body)
+
+      expect(json).to include('message' => 'エラーが発生しました。システム管理者にお問い合わせください。')
+      expect(response.status).to eq(500)
     end
   end
 end
