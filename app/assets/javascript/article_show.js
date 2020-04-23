@@ -15,7 +15,10 @@ Vue.component('article-show-component', {
   },
   mounted: async function() {
     try {
-      if(this.article) return this.switchArticle()
+      if(this.article) {
+        this.switchArticle()
+        return
+      }
       this.switchArticleId()
       const res = await axios.get(`/api/v1/articles/${this.articleShow.id}`)
       this.articleShow = res.data
