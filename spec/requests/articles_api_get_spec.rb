@@ -33,7 +33,7 @@ RSpec.describe 'ArticlesApiGet', type: :request do
 
   describe 'ErrorGetApi' do
     it 'not found artilce expected error response' do
-      get '/api/v1/articles/1'
+      get '/api/v1/articles/undefined'
       json = JSON.parse(response.body)
 
       expect(json).to include('message' => 'お探しものが見つかりません')

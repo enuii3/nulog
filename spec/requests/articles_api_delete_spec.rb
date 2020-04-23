@@ -12,7 +12,7 @@ RSpec.describe 'ArticlesApiDelete', type: :request do
 
   describe 'ErrorApiDelete' do
     it 'not found article expected error response' do
-      delete '/api/v1/articles/1'
+      delete '/api/v1/articles/undefined'
       json = JSON.parse(response.body)
 
       expect(json).to include('message' => 'お探しものが見つかりません')
