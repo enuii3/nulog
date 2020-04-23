@@ -35,7 +35,7 @@ RSpec.describe 'ArticlesApiPost', type: :request do
       valid_params = { title: 'test-title', body: 'test-body', user_id: '' }
       post '/api/v1/articles/', params: { article: valid_params }
 
-      expect(json).to include('Userを入力してください')
+      expect(json).to include('投稿者を入力してください')
       expect(response.status).to eq(422)
     end
 

@@ -40,7 +40,7 @@ RSpec.describe 'ArticlesApiPatch', type: :request do
     it 'no user_id expected error response' do
       patch "/api/v1/articles/#{article.id}", params: { article: { user_id: '' } }
 
-      expect(json).to include('Userを入力してください')
+      expect(json).to include('投稿者を入力してください')
       expect(response.status).to eq(422)
     end
 
