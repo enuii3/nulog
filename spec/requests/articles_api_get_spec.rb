@@ -7,7 +7,7 @@ RSpec.describe 'ArticlesApiGet', type: :request do
   describe 'GetApi' do
     it 'index articles' do
       articles
-      get api_v1_articles_path
+      get '/api/v1/articles/'
       jsons = JSON.parse(response.body)
 
       jsons.each do |json|
@@ -18,7 +18,7 @@ RSpec.describe 'ArticlesApiGet', type: :request do
     end
 
     it 'show article' do
-      get api_v1_article_path(article.id)
+      get "/api/v1/articles/#{article.id}"
       json = JSON.parse(response.body)
       article_updated_at = I18n.l(article.updated_at.to_date, format: :long)
 
@@ -52,7 +52,7 @@ RSpec.describe 'ArticlesApiGet', type: :request do
 
     it 'raise in show expected error response' do
       allow(Article).to receive(:find).and_raise
-      get api_v1_article_path(article.id)
+      get "/api/v1/articles/#{article.id}"
       json = JSON.parse(response.body)
 
       expect(json).to include('message' => 'エラーが発生しました。システム管理者にお問い合わせください。')
