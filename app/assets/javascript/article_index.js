@@ -13,12 +13,18 @@ Vue.component('article-index-component', {
       this.errors = error.response.data
     }
   },
+  methods: {
+    linkToShow: function(article_id) {
+      location.href=`/articles/${article_id}`
+    },
+  },
   template: `
     <div>
       <error-component :errors="errors"></error-component>
       <ul class="none-list-style">
         <li v-for='article in articles' :key='article.id'>
-          <article-show-component :article="article"></article-show-component>
+          <article-component :article="article"></article-component>
+          <button class="right btn" @click="linkToShow(article.id)">記事詳細</button><br><br><br>
         </li>
       </ul>
     </div>

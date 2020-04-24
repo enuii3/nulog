@@ -3,25 +3,17 @@ Vue.component('article-show-component', {
     id: {
       type: Number,
     },
-    article: {
-      type: Object,
-    },
   },
   data: function(){
     return {
-      articleShow: {},
+      article: {},
       errors: [],
     }
   },
   mounted: async function() {
     try {
-      if(this.article) {
-        this.switchArticle()
-        return
-      }
-      this.switchArticleId()
-      const res = await axios.get(`/api/v1/articles/${this.articleShow.id}`)
-      this.articleShow = res.data
+      const res = await axios.get(`/api/v1/articles/${this.id}`)
+      this.article = res.data
     } catch (error) {
       this.errors = error.response.data
     }
@@ -37,32 +29,13 @@ Vue.component('article-show-component', {
         }
       }
     },
-    switchArticle: function(){
-      this.articleShow = this.article
-    },
-    switchArticleId: function() {
-      if(!this.articleShow.id) this.articleShow.id = this.id
-    },
-    linkToShow: function(article_id) {
-      location.href=`/articles/${article_id}`
-    },
   },
   template: `
     <div>
-      <error-component :errors="errors" v-if="!article"></error-component>
-      <div class="card">
-        <h2>{{ articleShow.title }}</h2>
-        <p>{{ articleShow.updated_at }}&emsp;{{ articleShow.user_name }}</p>
-        <p>{{ articleShow.body }}</p>
-      </div>
-
-      <div v-if="article">
-        <button class="right btn" @click="linkToShow(article.id)">記事詳細</button><br><br><br>
-      </div>
-      <div v-else>
-        <button class="left btn" @click="destroyArticle">削除</button>
-        <button class="right btn" @click="$emit('change-page')">編集</button>
-      </div>
+      <error-component :errors="errors"></error-component>
+      <article-component :article="article"></article-component>
+      <button class="left btn" @click="destroyArticle">削除</button>
+      <button class="right btn" @click="$emit('change-page')">編集</button>
     </div>
   `
 })
