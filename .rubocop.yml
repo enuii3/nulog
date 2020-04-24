@@ -35,4 +35,4 @@ Style/AsciiComments:
 #一つのブロックあたりの25行制限を解除
 Metrics/BlockLength:
   Exclude:
-    - 'spec/requests/**'
+    - 'spec/requests/api/v1/**'
