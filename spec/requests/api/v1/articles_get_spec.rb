@@ -22,7 +22,6 @@ RSpec.describe 'ArticlesApiGet', type: :request do
       json = JSON.parse(response.body)
       article_updated_at = I18n.l(article.updated_at.to_date, format: :long)
 
-      expect(json['id']).to eq(article.id)
       expect(json['title']).to eq(article.title)
       expect(json['body']).to eq(article.body)
       expect(json['updated_at']).to eq(article_updated_at)

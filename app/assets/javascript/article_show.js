@@ -2,8 +2,7 @@ Vue.component('article-show-component', {
   props: {
     id: {
       type: Number,
-      required: true,
-    }
+    },
   },
   data: function(){
     return {
@@ -32,16 +31,11 @@ Vue.component('article-show-component', {
     },
   },
   template: `
-  <div>
-    <error-component :errors="errors"></error-component>
-    <div class="card">
-      <h2>{{ article.title }}</h2>
-      <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
-      <p>{{ article.body }}</p>
-    </div>
-    <div class="button-area">
+    <div>
+      <error-component :errors="errors"></error-component>
+      <article-component :article="article"></article-component>
       <button class="left btn" @click="destroyArticle">削除</button>
       <button class="right btn" @click="$emit('change-page')">編集</button>
     </div>
-  </div>`
+  `
 })

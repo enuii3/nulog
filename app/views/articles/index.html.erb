@@ -1,39 +1,7 @@
-<div id="app">
-  <error-component :errors="errors"></error-component>
-  <ul class="none-list-style">
-    <li v-for='article in articles' :key='article.id'>
-      <div class="card">
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
-        <p>{{ article.body }}</p>
-      </div>
-      <button @click='linkToShow(article.id)' class="right btn">詳細画面</button><br><br><br>
-    </li>
-  </ul>
+<div id="article-index">
+  <article-index-component></article-index-component>
 </div>
 
 <script>
-  new Vue({
-    el: '#app',
-    data: function(){
-      return {
-        articles: [],
-        errors: [],
-      }
-    },
-    mounted: async function() {
-      try {
-        const res = await axios.get('/api/v1/articles')
-        this.articles = res.data
-      } catch (error) {
-        this.errors = error.response.data
-      }
-    },
-    methods: {
-      linkToShow: function(article_id) {
-        location.href=`/articles/${article_id}`
-      }
-    }
-  })
+  new Vue({}).$mount('#article-index')
 </script>
-
