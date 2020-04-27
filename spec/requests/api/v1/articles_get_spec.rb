@@ -2,17 +2,17 @@ require 'rails_helper'
 
 RSpec.describe 'ArticlesApiGet', type: :request do
   let(:article) { FactoryBot.create(:article) }
-  let(:article_comment) { FactoryBot.create_list(:comment, 3) }
+  let(:articles) { FactoryBot.create_list(:article, 3) }
 
   describe 'GetApi' do
     it 'index articles' do
-      article_comment
+      articles
       get '/api/v1/articles/'
       jsons = JSON.parse(response.body)
 
       jsons.each do |json|
-        expect(json.keys).to include('id', 'title', 'body', 'updated_at', 'user_name', 'comments_length')
-        expect(json['comments_length']).to eq(1)
+        expect(json.keys).to include('id', 'title', 'body', 'updated_at', 'user_name', 'comments_count')
+        expect(json['comments_count']).to eq(3)
       end
       expect(jsons.length).to eq(3)
       expect(response.status).to eq(200)
@@ -41,7 +41,7 @@ RSpec.describe 'ArticlesApiGet', type: :request do
     end
 
     it 'raise in index expected error response' do
-      article_comment
+      articles
       allow(Article).to receive(:all).and_raise
       get '/api/v1/articles/'
       json = JSON.parse(response.body)
