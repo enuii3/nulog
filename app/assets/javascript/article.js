@@ -3,7 +3,7 @@ Vue.component('article-component', {
     article: {
       type: Object,
     },
-    commentLengthTruth: {
+    isItVisibleCommentCount: {
       type: Boolean,
       default: false
     }
@@ -14,8 +14,8 @@ Vue.component('article-component', {
         <h2>{{ article.title }}</h2>
         <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
         <p>{{ article.body }}</p>
-        <div v-if="commentLengthTruth">
-          <p>コメント: {{ article.comments_length }}件</p>
+        <div v-if="isItVisibleCommentCount">
+          <p>コメント: {{ article.comments_count }}件</p>
         </div>
       </div>
     </div>

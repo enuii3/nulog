@@ -23,7 +23,7 @@ Vue.component('article-index-component', {
       <error-component :errors="errors"></error-component>
       <ul class="none-list-style">
         <li v-for='article in articles' :key='article.id'>
-          <article-component :article="article" :comment-length-truth="true"></article-component>
+          <article-component :article="article" :isItVisibleCommentCount="true"></article-component>
           <button class="right btn" @click="linkToShow(article.id)">記事詳細</button><br><br><br>
         </li>
       </ul>
