@@ -4,9 +4,14 @@ FactoryBot.define do
     body { Faker::Lorem.paragraph_by_chars }
     association :user
 
-    after(:create) do |article|
-      commenter = FactoryBot.create(:user)
-      FactoryBot.create_list(:comment, 50, article: article, user: commenter)
+    trait :with_comments do
+      transient do
+        comments_length { 2 }
+      end
+
+      after(:create) do |article, evaluator|
+        FactoryBot.create_list(:comment, evaluator.comments_length, article: article)
+      end
     end
   end
 end
