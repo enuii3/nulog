@@ -5,7 +5,8 @@ FactoryBot.define do
     association :user
 
     after(:create) do |article|
-      FactoryBot.create_list(:comment, 3, article: article)
+      commenter = FactoryBot.create(:user)
+      FactoryBot.create_list(:comment, 50, article: article, user: commenter)
     end
   end
 end

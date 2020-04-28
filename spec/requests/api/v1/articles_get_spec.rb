@@ -12,7 +12,7 @@ RSpec.describe 'ArticlesApiGet', type: :request do
 
       jsons.each do |json|
         expect(json.keys).to include('id', 'title', 'body', 'updated_at', 'user_name', 'comments_count')
-        expect(json['comments_count']).to eq(3)
+        expect(json['comments_count']).to eq(50)
       end
       expect(jsons.length).to eq(3)
       expect(response.status).to eq(200)
