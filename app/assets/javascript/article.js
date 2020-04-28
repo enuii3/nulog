@@ -3,7 +3,7 @@ Vue.component('article-component', {
     article: {
       type: Object,
     },
-    isItVisibleCommentCount: {
+    visibleCommentCount: {
       type: Boolean,
       default: false
     }
@@ -14,7 +14,7 @@ Vue.component('article-component', {
         <h2>{{ article.title }}</h2>
         <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
         <p>{{ article.body }}</p>
-        <div v-if="isItVisibleCommentCount">
+        <div v-if="visibleCommentCount">
           <p>コメント: {{ article.comments_count }}件</p>
         </div>
       </div>
