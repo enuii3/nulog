@@ -2,19 +2,31 @@ require 'rails_helper'
 
 RSpec.describe 'ArticlesApiGet', type: :request do
   let(:article) { FactoryBot.create(:article) }
-  let(:articles) { FactoryBot.create_list(:article, 3) }
+  let(:articles) { FactoryBot.create_list(:article, 2) }
+  let(:articles_with_comments) { FactoryBot.create_list(:article, 3, :with_comments) }
 
   describe 'GetApi' do
-    it 'index articles' do
+    it 'index articles with no comments' do
       articles
       get '/api/v1/articles/'
       jsons = JSON.parse(response.body)
 
       jsons.each do |json|
-        expect(json.keys).to include('id', 'title', 'body', 'updated_at', 'user_name')
+        expect(json.keys).to include('id', 'title', 'body', 'updated_at', 'user_name', 'comments_count')
+        expect(json['comments_count']).to eq(0)
       end
-      expect(jsons.length).to eq(3)
       expect(response.status).to eq(200)
+      expect(jsons.length).to eq(2)
+    end
+
+    it 'index articles with 2 comments' do
+      articles_with_comments
+      get '/api/v1/articles/'
+      jsons = JSON.parse(response.body)
+
+      jsons.each do |json|
+        expect(json['comments_count']).to eq(2)
+      end
     end
 
     it 'show article' do

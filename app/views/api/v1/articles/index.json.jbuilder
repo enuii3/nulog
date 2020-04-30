@@ -6,4 +6,5 @@ json.array! @articles do |article|
   json.body article.body
   json.user_name article.user.name
   json.updated_at l(article_updated_at, format: :long)
+  json.comments_count article.comments.count
 end
