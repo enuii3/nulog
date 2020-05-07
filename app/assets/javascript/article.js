@@ -1,5 +1,8 @@
 Vue.component('article-component', {
   props: {
+    id: {
+      type: Number,
+    },
     article: {
       type: Object,
     },
@@ -16,6 +19,9 @@ Vue.component('article-component', {
         <p>{{ article.body }}</p>
         <div v-if="visibleCommentCount">
           <p>コメント: {{ article.comments_count }}件</p>
+        </div>
+        <div v-else>
+          <comment-form-component :id="id"></comment-form-component>
         </div>
       </div>
     </div>
