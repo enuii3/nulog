@@ -14,15 +14,10 @@
  *= require_self
  */
 
-// button
-  .btn{
-    width: 150px;
-    height: 50px;
-    background-color: green;
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 15px;
+// common 
+  .none-list-style{
+    list-style: none;
+    padding-inline-start: 0;
   }
   .right{
     float: right;
@@ -32,9 +27,24 @@
     float: left;
     margin-left: 40px;
   }
+  .btn{
+    width: 150px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    height: 50px;
 
-  //input
-  .input-field{
+    &.article {
+      background-color: green;
+      color: white;
+    }
+  }
+  .error-field{
+    color: red;
+  }
+
+  //article
+  .article-form-field{
     text-align: center;
     
     input, textarea{
@@ -42,21 +52,10 @@
       margin-bottom: 20px;
     }
   }
-
-  //error
-  .error-field{
-    color: red;
-  }
-
-  // other
-  .none-list-style{
-    list-style: none;
-  }
   .card{
     color: white;
     background-color: gray;
     margin: 10px 40px;
     padding: 50px;
-    list-style: none;
     clear: both;
   }

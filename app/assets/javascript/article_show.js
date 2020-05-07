@@ -34,8 +34,8 @@ Vue.component('article-show-component', {
     <div>
       <error-component :errors="errors"></error-component>
       <article-component :article="article"></article-component>
-      <button class="left btn" @click="destroyArticle">削除</button>
-      <button class="right btn" @click="$emit('change-page')">編集</button>
+      <button class="left btn article" @click="destroyArticle">削除</button>
+      <button class="right btn article" @click="$emit('change-page')">編集</button>
     </div>
   `
 })

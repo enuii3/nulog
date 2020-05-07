@@ -62,7 +62,7 @@ Vue.component('article-form-component', {
     <div>
       <form @submit.prevent="submitEvent"><br>
         <error-component :errors="errors"></error-component>
-        <div class="input-field">
+        <div class="article-form-field">
           <input type="text"
             v-model="article.title"
             placeholder="記事タイトル"
@@ -73,8 +73,8 @@ Vue.component('article-form-component', {
           ></textarea>
         </div>
         <div class="button-area">
-          <button class="left btn">キャンセル</button>
-          <button class="right btn" type="submit">投稿</button>
+          <button class="left btn article">キャンセル</button>
+          <button class="right btn article" type="submit">投稿</button>
         </div>
       </form>
     </div>
