@@ -24,7 +24,7 @@ Vue.component('article-index-component', {
       <ul class="none-list-style">
         <li v-for='article in articles' :key='article.id'>
           <article-component :article="article" :visibleCommentCount="true"></article-component>
-          <button class="right btn" @click="linkToShow(article.id)">記事詳細</button><br><br><br>
+          <button class="right btn article" @click="linkToShow(article.id)">記事詳細</button><br><br><br>
         </li>
       </ul>
     </div>
