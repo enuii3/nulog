@@ -13,6 +13,11 @@ Vue.component('article-component', {
       return this.article && this.article.id
     }
   },
+  methods: {
+    handleCommentErrors: function(errors) {
+      this.$emit('handle-comment-errors', errors)
+    }
+  },
   template: `
     <div class="card">
       <h2>{{ article.title }}</h2>
@@ -22,7 +27,7 @@ Vue.component('article-component', {
         <p>コメント: {{ article.comments_count }}件</p>
       </div>
       <div v-else-if="visibleCommentField"><br>
-        <comments-field-component :article-id="article.id"></comments-field-component>
+        <comments-field-component :article-id="article.id" @handle-comment-errors="handleCommentErrors"></comments-field-component>
       </div>
     </div>
   `

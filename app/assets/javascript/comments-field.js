@@ -18,6 +18,9 @@ Vue.component('comments-field-component', {
       this.offset = this.comments.length
       this.comments.length < 20 ? this.limit = 15 : this.limit = 20
     },
+    handleCommentErrors: function(errors) {
+      this.$emit('handle-comment-errors', errors)
+    },
   },
   watch: {
     offset: {
@@ -34,7 +37,6 @@ Vue.component('comments-field-component', {
           this.comments_length = res.data.length
           this.comments = this.comments.concat(res.data)
         } catch(error) {
-          //エラー表示は別PRにて対応
         }
       }
     }
@@ -47,7 +49,7 @@ Vue.component('comments-field-component', {
         </li>
       </ul>
       <button class="right btn is-more" v-if="limit <= comments_length" @click="isMore">さらに表示</button>
-      <comment-form-component :article-id="articleId"></comment-form-component>
+      <comment-form-component :article-id="articleId" @handle-comment-errors="handleCommentErrors"></comment-form-component>
     </div>
   `
 })

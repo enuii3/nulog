@@ -10,7 +10,6 @@ Vue.component('comment-form-component', {
       commenter_name: "",
       body: "",
       user_id: null,
-      errors: [],
     }
   },
   methods: {
@@ -22,14 +21,14 @@ Vue.component('comment-form-component', {
           user_id: this.user_id,
           article_id: this.articleId,
         })
+        location.href = `/articles/${this.articleId}`
       } catch(error) {
-        this.errors = error.response.data
-        //エラー表示は別PRにて対応します。
+        this.$emit('handle-comment-errors', error.response.data)
       }
     },
   },
   template: `
-    <form class="comments" @submit="createComment">
+    <form class="comments" @submit.prevent="createComment">
       <textarea rows="5"
         class="form-commenter-name"
         v-model="commenter_name"
