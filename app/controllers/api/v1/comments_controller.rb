@@ -18,6 +18,11 @@ class Api::V1::CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    Comment.destroy(params[:id])
+    head :ok
+  end
+
   private
 
   def params_comment
