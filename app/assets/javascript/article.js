@@ -14,17 +14,15 @@ Vue.component('article-component', {
     }
   },
   template: `
-    <div>
-      <div class="card">
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
-        <p>{{ article.body }}</p>
-        <div v-if="visibleCommentCount">
-          <p>コメント: {{ article.comments_count }}件</p>
-        </div>
-        <div v-else-if="visibleCommentField">
-          <comment-form-component :article-id="article.id"></comment-form-component>
-        </div>
+    <div class="card">
+      <h2>{{ article.title }}</h2>
+      <p>{{ article.updated_at }}&emsp;{{ article.user_name }}</p>
+      <p>{{ article.body }}</p>
+      <div v-if="visibleCommentCount">
+        <p>コメント: {{ article.comments_count }}件</p>
+      </div>
+      <div v-else-if="visibleCommentField"><br>
+        <comments-field-component :article-id="article.id"></comments-field-component>
       </div>
     </div>
   `
