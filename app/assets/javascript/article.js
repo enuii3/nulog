@@ -1,14 +1,16 @@
 Vue.component('article-component', {
   props: {
-    id: {
-      type: Number,
-    },
     article: {
       type: Object,
     },
     visibleCommentCount: {
       type: Boolean,
       default: false
+    },
+  },
+  computed: {
+    visibleCommentField: function(){
+      return this.article && this.article.id
     }
   },
   template: `
@@ -20,8 +22,8 @@ Vue.component('article-component', {
         <div v-if="visibleCommentCount">
           <p>コメント: {{ article.comments_count }}件</p>
         </div>
-        <div v-else>
-          <comment-form-component :id="id"></comment-form-component>
+        <div v-else-if="visibleCommentField">
+          <comment-form-component :article-id="article.id"></comment-form-component>
         </div>
       </div>
     </div>
