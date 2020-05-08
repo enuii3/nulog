@@ -12,7 +12,7 @@ ja:
       article:
         title: 記事タイトル
         body: 記事本文
-        user: 投稿者
+        user: 記事投稿者
       comment:
         body: コメント本文
 
