@@ -4,16 +4,16 @@ RSpec.describe 'CommentsApiPost', type: :request do
   let(:json) { JSON.parse(response.body) }
   let(:user) { FactoryBot.create(:user) }
   let(:article) { FactoryBot.create(:article) }
-  let(:user_comment) { { body: 'sample body', commenter_name: user.name, user_id: user.id, article_id: article.id } }
-  let(:guest_comment) { { body: 'sample body', commenter_name: 'guest comment', user_id: nil, article_id: article.id } }
+  let(:user_comment) { { commenter_name: user.name, body: 'sample body', user_id: user.id, article_id: article.id } }
+  let(:guest_comment) { { commenter_name: 'guest', body: 'sample body', user_id: nil, article_id: article.id } }
 
   describe 'PostApi' do
     it 'post guest comments' do
       post '/api/v1/comments', params: { comment: guest_comment }
 
       expect(response.status).to eq(200)
+      expect(json['commenter_name']).to eq('guest')
       expect(json['body']).to eq('sample body')
-      expect(json['commenter_name']).to eq('guest comment')
       expect(json['user_id']).to eq(nil)
       expect(json['article_id']).to eq(article.id)
     end
@@ -27,7 +27,29 @@ RSpec.describe 'CommentsApiPost', type: :request do
   end
 
   describe 'ErrorGetApi' do
-    # エラーに関するスペックは別PRにて対応します。
+    it 'empty commenter_name and null user_id expected validation errors' do
+      guest_comment[:commenter_name] = ''
+      post '/api/v1/comments', params: { comment: guest_comment }
+
+      expect(json).to include('コメント投稿者を入力してください')
+      expect(response.status).to eq(422)
+    end
+
+    it 'empty body expected validation errors' do
+      guest_comment[:body] = ''
+      post '/api/v1/comments', params: { comment: guest_comment }
+
+      expect(json).to include('コメント本文を入力してください')
+      expect(response.status).to eq(422)
+    end
+
+    it 'empty article_id expected validation errors' do
+      guest_comment[:article_id] = ''
+      post '/api/v1/comments', params: { comment: guest_comment }
+
+      expect(json).to include('コメントしたい記事を入力してください')
+      expect(response.status).to eq(422)
+    end
 
     it 'raise in post expected error response ' do
       allow(Comment).to receive(:new).and_raise

@@ -14,5 +14,7 @@ ja:
         body: 記事本文
         user: 記事投稿者
       comment:
+        commenter_name: コメント投稿者
         body: コメント本文
+        article: コメントしたい記事
 
