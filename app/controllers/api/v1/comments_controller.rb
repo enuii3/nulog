@@ -1,7 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
   def create
     comment = Comment.new(params_comment)
-    comment.update(commenter_name: comment.user.name) if comment.user_id
 
     if comment.save
       render json: comment
