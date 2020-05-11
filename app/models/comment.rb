@@ -3,4 +3,11 @@ class Comment < ApplicationRecord
   belongs_to :article
   has_many :favorite, as: :favoriteable, dependent: :destroy
   validates :body, presence: true, length: { maximum: 1000 }
+  validates :commenter_name, presence: true, if: :guest?
+
+  private
+
+  def guest?
+    user_id.nil?
+  end
 end
