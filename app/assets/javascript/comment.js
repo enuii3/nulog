@@ -4,6 +4,11 @@ Vue.component('comment-component', {
       type: Object,
     }
   },
+  data: function() {
+    return {
+      user_name: '',
+    }
+  },
   template: `
     <div class="comments">
       <div class="card">
