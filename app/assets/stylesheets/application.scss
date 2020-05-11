@@ -49,6 +49,11 @@
       background-color: green;
       color: white;
     }
+    &.is-read-more {
+      background-color: yellow;
+      color: pink;
+      margin: 0 0 20px 0;
+    }
   }
   .error-field{
     color: red;
@@ -86,5 +91,23 @@
     .form-body{
       flex-basis: 80%;
       margin-right: 10px;
+    }
+    .card{
+      flex-basis: 95%;
+      color: gray;
+      background-color: white;
+      padding: 10px;
+      margin: 0 10px 0 0;
+      display: flex;
+      justify-content: space-around;
+
+      .commenter-name{
+        flex-basis: 20%;
+        font-size: 15px;
+      }
+      .body{
+        flex-basis: 80%;
+        font-size: 12px;
+      }
     }
   }
