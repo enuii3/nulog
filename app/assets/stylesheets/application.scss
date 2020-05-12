@@ -34,10 +34,24 @@
     font-size: 15px;
     height: 50px;
 
+    &.comment {
+      width: 70px;
+      height: 40px;
+      background-color: white;
+      color: green;
+      
+      &.form {
+        height: 70px;
+        color: blue;
+      }
+    }
     &.article {
       background-color: green;
       color: white;
     }
+  }
+  .success-field{
+    color: green;
   }
   .error-field{
     color: red;
@@ -58,4 +72,22 @@
     margin: 10px 40px;
     padding: 50px;
     clear: both;
+  }
+
+  //comment
+  .comments{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+
+    .form-commenter-name{
+      flex-basis: 15%;
+      padding-right: 10px;
+    }
+    .form-body{
+      flex-basis: 80%;
+      margin-right: 10px;
+    }
   }
