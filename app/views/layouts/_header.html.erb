@@ -3,16 +3,23 @@
     <h1 class="logo">nulog</h1>
     <ul class="nav-list">
       <li class="nav-list-item">
+        <% if user_signed_in? %>
+          <a href="sign_out" class="articles-link">ログアウト</a>
+        <% else %>
+          <a href="sign_in" class="articles-link">ログイン</a>
+        <% end %>
+      </li>
+      <li class="nav-list-item">
         <a href="/articles/new" class="articles-link">記事投稿</a>
       </li>
       <li class="nav-list-item">
-        <a href="/articles" class="articles-link">記事一覧</a>
+        <a href="/" class="articles-link">記事一覧</a>
       </li>
     </ul>
   </header>
 </div>
 
-<style scoped>
+<style>
 .logo{
   letter-spacing: 0.3em;
   float: left;
