@@ -19,6 +19,9 @@ Vue.component('header-component', {
         <li class="nav-list-item">
           <a href="/" class="articles-link">記事一覧</a>
         </li>
+        <li class="nav-list-item">
+          <weather-forecasts-component :is-signed-in-user="isSignedInUser"></weather-forecasts-component>
+        </li>
       </ul>
     </header>
   `

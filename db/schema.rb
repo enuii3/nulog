@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_18_040943) do
+ActiveRecord::Schema.define(version: 2020_05_16_093818) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title", limit: 200, null: false
@@ -42,13 +42,37 @@ ActiveRecord::Schema.define(version: 2020_02_18_040943) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "prefecture_name"
+    t.string "city_name"
+    t.string "city_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "prefecture_name"
+    t.string "city_name"
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "weather_forecasts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "link", null: false
+    t.string "prefecture_name", null: false
+    t.string "city_name", null: false
+    t.string "tomorrow", null: false
+    t.string "tomorrow_telop", null: false
+    t.string "tomorrow_celsius", null: false
+    t.string "day_after_tomorrow", null: false
+    t.string "day_after_tomorrow_telop", null: false
+    t.string "day_after_tomorrow_celsius", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "articles", "users"
