@@ -1,4 +1,11 @@
 <div id="article-new">
+  <% if user_signed_in? %>
+    <header-component :is-signed-in-user="true"></header-component>
+  <% else %>
+    <header-component></header-component>
+  <% end %>
+  <p class="notice success-field"><%= notice %></p>
+  <p class="alert error-field"><%= alert %></p>
   <article-form-component :permission-create="true"></article-form-component>
 </div>
 

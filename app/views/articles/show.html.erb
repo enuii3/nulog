@@ -1,4 +1,13 @@
 <div id="article-show">
+  <% if user_signed_in? %>
+    <header-component :is-signed-in-user="true"></header-component>
+  <% else %>
+    <header-component></header-component>
+  <% end %>
+
+  <p class="notice success-field"><%= notice %></p>
+  <p class="alert error-field"><%= alert %></p>
+
   <article-show-component v-if="isActiveShow" :id="id"  @change-page="changePage"></article-show-component>
   <article-form-component v-if="isActiveEdit"
     :id="id"
