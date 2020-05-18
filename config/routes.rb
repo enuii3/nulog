@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :articles
       resources :comments, only: :create
+      resources :weather_forecasts, only: :index
     end
   end
 end

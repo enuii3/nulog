@@ -11,6 +11,9 @@ Vue.component('article-form-component', {
       type: Boolean,
       default: false,
     }, 
+    weatherForecastsErrors:{
+      type: Array,
+    }
   },
   data: function() {
     return {
@@ -57,6 +60,11 @@ Vue.component('article-form-component', {
 
       }
     },
+  },
+  watch: {
+    weatherForecastsErrors: function(){
+      this.errors = this.weatherForecastsErrors
+    }
   },
   template: `
     <div>

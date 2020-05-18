@@ -3,6 +3,9 @@ Vue.component('article-show-component', {
     id: {
       type: Number,
     },
+    weatherForecastsErrors: {
+      type: Array,
+    }
   },
   data: function(){
     return {
@@ -29,6 +32,11 @@ Vue.component('article-show-component', {
         }
       }
     },
+  },
+  watch: {
+    weatherForecastsErrors: function(){
+      this.errors = this.weatherForecastsErrors
+    }
   },
   template: `
     <div>

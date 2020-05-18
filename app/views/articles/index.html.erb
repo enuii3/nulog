@@ -1,7 +1,32 @@
 <div id="article-index">
-  <article-index-component></article-index-component>
+  <% if user_signed_in? %>
+    <header-component
+      :is-signed-in-user="true"
+      @handle-weather-forecasts-errors="handleWeatherForecastsErrors"
+    ></header-component>
+  <% else %>
+    <header-component
+      @handle-weather-forecasts-errors="handleWeatherForecastsErrors"
+    ></header-component>
+  <% end %>
+
+  <p class="notice success-field"><%= notice %></p>
+  <p class="alert error-field"><%= alert %></p>
+  <article-index-component :weather-forecasts-errors="errors"></article-index-component>
 </div>
 
 <script>
-  new Vue({}).$mount('#article-index')
+  new Vue({
+    el: '#article-index',
+    data: function(){
+      return {
+        errors: [],
+      }
+    },
+    methods: {
+      handleWeatherForecastsErrors: function(errors){
+        this.errors = errors
+      }
+    }
+  })
 </script>

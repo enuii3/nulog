@@ -1,7 +1,34 @@
 <div id="article-new">
-  <article-form-component :permission-create="true"></article-form-component>
+  <% if user_signed_in? %>
+    <header-component
+      :is-signed-in-user="true"
+      @handle-weather-forecasts-errors="handleWeatherForecastsErrors"
+    ></header-component>
+  <% else %>
+    <header-component
+      @handle-weather-forecasts-errors="handleWeatherForecastsErrors"
+    ></header-component>
+  <% end %>
+  <p class="notice success-field"><%= notice %></p>
+  <p class="alert error-field"><%= alert %></p>
+  <article-form-component
+    :permission-create="true"
+    :weather-forecasts-errors="errors"
+  ></article-form-component>
 </div>
 
 <script>
-  new Vue({}).$mount('#article-new')
+  new Vue({
+    el: '#article-new',
+    data: function(){
+      return {
+        errors: [],
+      }
+    },
+    methods: {
+      handleWeatherForecastsErrors: function(errors){
+        this.errors = errors
+      }
+    }
+  })
 </script>

@@ -36,3 +36,17 @@ Style/AsciiComments:
 Metrics/BlockLength:
   Exclude:
     - 'spec/requests/api/v1/**'
+
+#find_by_系メソッドの使用を許可
+Rails/DynamicFindBy:
+  Whitelist:
+    - find_by_weather_forecasts
+
+#行数の制限を10から11に変更
+Metrics/MethodLength:
+  Max: 11
+
+#AbcSizeを15から28に変更
+Metrics/AbcSize:
+  Max: 28
+

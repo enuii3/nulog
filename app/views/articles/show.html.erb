@@ -1,9 +1,30 @@
 <div id="article-show">
-  <article-show-component v-if="isActiveShow" :id="id"  @change-page="changePage"></article-show-component>
-  <article-form-component v-if="isActiveEdit"
+  <% if user_signed_in? %>
+    <header-component
+      :is-signed-in-user="true" 
+      @handle-weather-forecasts-errors="handleWeatherForecastsErrors"
+    ></header-component>
+  <% else %>
+    <header-component
+      @handle-weather-forecasts-errors="handleWeatherForecastsErrors"
+    ></header-component>
+  <% end %>
+
+  <p class="notice success-field"><%= notice %></p>
+  <p class="alert error-field"><%= alert %></p>
+
+  <article-show-component
+    v-if="isActiveShow"
+    :id="id"
+    @change-page="changePage"
+    :weather-forecasts-errors="errors"
+  ></article-show-component>
+  <article-form-component
+    v-if="isActiveEdit"
     :id="id"
     :permission-update="true"
     @change-page="changePage"
+    :weather-forecasts-errors="errors"
   ></article-form-component>
 </div>
 
@@ -15,6 +36,7 @@
         id: <%= params[:id] %>,
         isActiveShow: true,
         isActiveEdit: false,
+        errors: [],
       }
     },
     methods: {
@@ -22,6 +44,9 @@
         this.isActiveShow = !this.isActiveShow
         this.isActiveEdit = !this.isActiveEdit
       },
+      handleWeatherForecastsErrors: function(errors){
+        this.errors = errors
+      }
     }
   })
 </script>

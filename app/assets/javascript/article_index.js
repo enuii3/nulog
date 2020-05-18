@@ -1,4 +1,9 @@
 Vue.component('article-index-component', {
+  props: {
+    weatherForecastsErrors: {
+      type: Array,
+    }
+  },
   data: function(){
     return {
       articles: [],
@@ -17,6 +22,11 @@ Vue.component('article-index-component', {
     linkToShow: function(article_id) {
       location.href=`/articles/${article_id}`
     },
+  },
+  watch: {
+    weatherForecastsErrors: function(){
+      this.errors = this.weatherForecastsErrors
+    }
   },
   template: `
     <div>
