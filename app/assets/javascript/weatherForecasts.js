@@ -7,7 +7,6 @@ Vue.component('weather-forecasts-component', {
   },
   data: function(){
     return {
-      erors: [],
       weatherForecasts: {},
       selectedCity: '',
       selectedPrefecture: '未選択',
@@ -271,7 +270,7 @@ Vue.component('weather-forecasts-component', {
           this.selectedCity = res.data.city_name
         }
       } catch(error) {
-        this.errors = error.response.data
+        this.$emit('handle-weather-forecasts-errors', error.response.data)
       }
     }
   },
@@ -286,7 +285,7 @@ Vue.component('weather-forecasts-component', {
         })
         this.weatherForecasts = res.data
       } catch(error) {
-        this.errors = error.response.data
+        this.$emit('handle-weather-forecasts-errors', error.response.data)
       }
     },
     selectPrefecture: function(){

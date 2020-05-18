@@ -5,6 +5,11 @@ Vue.component('header-component', {
       default: false,
     }
   },
+  methods: {
+    handleWeatherForecastsErrors: function(errors){
+      this.$emit('handle-weather-forecasts-errors', errors)
+    }
+  },
   template: `
     <header>
       <h1 class="logo">nulog</h1>
@@ -20,7 +25,10 @@ Vue.component('header-component', {
           <a href="/" class="articles-link">記事一覧</a>
         </li>
         <li class="nav-list-item">
-          <weather-forecasts-component :is-signed-in-user="isSignedInUser"></weather-forecasts-component>
+          <weather-forecasts-component
+            :is-signed-in-user="isSignedInUser"
+            @handle-weather-forecasts-errors="handleWeatherForecastsErrors"
+          ></weather-forecasts-component>
         </li>
       </ul>
     </header>
